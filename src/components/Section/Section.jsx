@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styled from 'styled-components';
 
 const Section = ({ title, size, children }) => {
@@ -15,3 +17,8 @@ const Section = ({ title, size, children }) => {
 };
 
 export default Section;
+
+Section.propTypes = {
+  title: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+}

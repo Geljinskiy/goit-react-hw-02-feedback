@@ -3,7 +3,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import Box from './Box';
-import theme from './theme';
+import theme from './common/theme';
 
 import Feedback from './Feedback';
 import Statistics from './Statistics';
@@ -47,13 +47,17 @@ export class App extends React.Component {
         </Box>
         <Box fontSize={18}>
           <Section title={'Statistics'} size={2}>
-            <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
-            />
+            {!this.countTotalFeedback() ? (
+              <span>No feedback given</span>
+            ) : (
+              <Statistics
+                good={this.state.good}
+                neutral={this.state.neutral}
+                bad={this.state.bad}
+                total={this.countTotalFeedback()}
+                positivePercentage={this.countPositiveFeedbackPercentage()}
+              />
+            )}
           </Section>
         </Box>
       </ThemeProvider>

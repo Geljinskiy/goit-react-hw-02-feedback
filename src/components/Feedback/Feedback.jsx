@@ -1,44 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
+import css from './Feedback.module.css';
 
-const GradeList = styled.ul`
-  display: flex;
-`;
-
-const GradeItem = styled.li`
-  &:not(:last-child) {
-    margin-right: 5px;
-  }
-`;
-
-const GradeBtn = styled.button`
-  border-radius: 4px;
-  border: 1px solid #888888;
-  cursor: pointer;
-  text-transform: capitalize;
-  background-color: #ffffff;
-  box-shadow: 0 1px 2px #888888;
-
-  &:active {
-    background-color: #3488f7;
-  }
-`;
-
-const Feedback = ({ heading, grades, onEstimate }) => {
+const Feedback = ({ grades, onEstimate }) => {
   return (
-    <GradeList>
+    <ul className={css.gradeList}>
       {grades.map(grade => {
         return (
-          <GradeItem key={grade}>
-            <GradeBtn onClick={() => onEstimate(grade)} type="button">
+          <li className={css.gradeItem} key={grade}>
+            <button
+              className={css.gradeBtn}
+              onClick={() => onEstimate(grade)}
+              type="button"
+            >
               {grade}
-            </GradeBtn>
-          </GradeItem>
+            </button>
+          </li>
         );
       })}
-    </GradeList>
+    </ul>
   );
 };
 
 export default Feedback;
+
+Feedback.propTypes = {
+  grades: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onEstimate: PropTypes.func.isRequired
+};

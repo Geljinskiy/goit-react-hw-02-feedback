@@ -1,28 +1,29 @@
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const GradeItem = styled.li`
-  text-transform: capitalize;
-`;
+import css from './Statistics.module.css';
 
 const Statistics = props => {
-  const { total } = props;
   return (
     <>
-      {!total ? (
-        <span>No feedback given</span>
-      ) : (
-        <ul>
-          {Object.entries(props).map(stat => {
-            return (
-              <GradeItem key={stat}>
-                {stat[0]}: {stat[1]}
-              </GradeItem>
-            );
-          })}
-        </ul>
-      )}
+      <ul>
+        {Object.entries(props).map(stat => {
+          return (
+            <li className={css.gradeItem} key={stat}>
+              {stat[0]}: {stat[1]}
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };
 
 export default Statistics;
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.string,
+};
