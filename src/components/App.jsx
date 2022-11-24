@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ThemeProvider } from 'styled-components';
 
-import Box from './Box';
+import Box from './common/Box';
 import theme from './common/theme';
 
 import Feedback from './Feedback';
